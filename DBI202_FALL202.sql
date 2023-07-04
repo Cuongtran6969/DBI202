@@ -1,4 +1,4 @@
---q1:
+--Q1:
 CREATE TABLE Departments (
  DeptID varchar(20) PRIMARY KEY,
  name nvarchar(200),
@@ -42,10 +42,10 @@ group by ProductSub.SubcategoryID, ProductSub.Name, ProductSub.Category
 order by ProductSub.Category, NumberOfProduct DESC, SubCategoryName
 
 --Q6
---SELECT Loc.LocationID, Loc.Name LocationName, COUNT(Pro.ProductID) as NumberOfProducts from Location Loc
---INNER JOIN ProductInventory ProInven on Loc.LocationID = ProInven.LocationID
---INNER JOIN Product Pro ON Pro.ProductID = ProInven.ProductID
---GROUP BY Loc.LocationID, Loc.Name
+SELECT Loc.LocationID, Loc.Name LocationName, COUNT(Pro.ProductID) as NumberOfProducts from Location Loc
+INNER JOIN ProductInventory ProInven on Loc.LocationID = ProInven.LocationID
+INNER JOIN Product Pro ON Pro.ProductID = ProInven.ProductID
+GROUP BY Loc.LocationID, Loc.Name
 
 --Q7
 --table 1 get count productID following couple Category and name (category | categoryname | numberProduct ** is count of each couple |)
@@ -61,4 +61,36 @@ order by ProductSub.Category, NumberOfProduct DESC, SubCategoryName
 	Select tb1.* from tb1
 	inner join tb2 on tb1.Category = tb2.Category AND tb1.NumberOfProducts = tb2.NumberOfProducts
 	ORDER BY tb1.NumberOfProducts DESC
-	
+--Q8
+--b1: create Procedure with procedure name and param will reiceve
+CREATE PROCEDURE proc_product_model @modelIID int, @NumberOfProducts INT OUTPUT
+AS 
+BEGIN
+--b2: statement with param
+SELECT @NumberOfProducts = Count(DISTINCT Pro.ModelID) from Product Pro
+WHERE Pro.ModelID = @modelIID
+GROUP BY Pro.ModelID
+END
+--b3: test pass param to Procedure
+declare @x int
+exec proc_product_model 9, @x output
+select @x as NumberOfProduct
+
+--Q9
+--drop trigger tr_insert_Product
+--b1: create trigger  On table relation Object insert 
+--CREATE Trigger tr_insert_Product ON Product instead of insert 
+CREATE Trigger tr_insert_Product ON Product after insert 
+AS
+BEGIN
+--b2: statement get Product after insrted
+   SELECT i.ProductID, i.Name as ProductName, i.ModelID, ProModel.Name AS ModelName FROM inserted i
+   INNER JOIN ProductModel ProModel on ProModel.ModelID = i.ModelID
+END
+--b3: test insert into a Product
+ -- insert into Product(ProductID, Name, Cost, Price, ModelID, SellStartDate)
+  --values(1000, 'Product Test', 12.5, 15.5, 1, '2021-10-25')
+
+--Q10
+DELETE FROM ProductInventory
+WHERE ProductInventory.ProductID IN (SELECT Product.ProductID FROM Product WHERE Product.ModelID = 33)
