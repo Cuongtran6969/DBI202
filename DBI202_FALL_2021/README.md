@@ -1,5 +1,5 @@
 <h1>DBscript.sql</h1>
-<h3>====>Download file DBscript to get database</h3>
+<h3>====>Download file DBscript.sql to get database</h3>
 <p>+Open SQL then open file choose the file download</p>
 <p>+Click "Execute" to create database</p>
 
