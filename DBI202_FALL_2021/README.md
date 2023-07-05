@@ -1,5 +1,5 @@
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=cuongtran6969&label=Profile%20views&color=0e75b6&style=flat" alt="cuongtran6969" /> </p>
-[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/<cuongtran6969>)
+<p align="left"> <img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="cuongtran6969" /> </p>
 <h1>DBscript.sql</h1>
 <h3>====>Download file DBscript.sql to get database</h3>
 <p>+Open SQL then open file choose the file download</p>
