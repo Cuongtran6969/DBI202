@@ -7,5 +7,5 @@
 <h1>PE_DBI202_SP2021_BL5.docx</h1>
 <h3>Download file to get work</h3>
 
-<h1>ANSWER_SQLQuery_SP2021_BL5.sqll</h1>
+<h1>ANSWER_SQLQuery_SP2021_BL5.sql</h1>
 <h3>Answer of this work</h3>
