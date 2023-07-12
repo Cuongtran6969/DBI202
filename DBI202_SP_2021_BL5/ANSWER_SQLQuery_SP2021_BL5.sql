@@ -138,7 +138,7 @@ values(1003, 'Alain', 'Boucher', 'alain.boucher@gmail.com', 'SH_CLERK', 50),
 
 --Q10
 delete from Departments
-where Departments.DepartmentID IN (
+where Departments.DepartmentID NOT IN (
  SELECT Distinct Departments.DepartmentID from Departments
  inner join Employees on Employees.DepartmentID = Departments.DepartmentID
 )
